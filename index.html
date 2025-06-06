@@ -21,7 +21,7 @@
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(249, 249, 249, 0.3);
         padding: 40px;
         border-radius: 20px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -102,9 +102,11 @@
         <label for="voiceSelect">Select  Voice:</label>
         <select id="voiceSelect"></select>
         <label for="rate">Rate Speed: <span id="rateValue">1</span></label>
-        <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1" />
+        <input type="range" id="rate" min="0" max="2" step="0.1" value="1" />
         <label for="pitch">Pitch: <span id="pitchValue">1</span></label>
         <input type="range" id="pitch" min="0" max="2" step="0.1" value="1" />
+        <label for="volume">Volume: <span id="volumeValue">1</span></label>
+        <input type="range" id="volume" min="0" max="2" step="0.1" value="1" />
         <button id="speakBtn">🔊Speak</button>
     </div>
 
@@ -117,6 +119,7 @@
     const pitch = document.getElementById('pitch');
     const rateValue = document.getElementById('rateValue');
     const pitchValue = document.getElementById('pitchValue');
+    const volumeValue = document.getElementById('volumeValue')
 
     let voices = [];
     
@@ -135,11 +138,13 @@
         utterance.voice = selectedVoice;
         utterance.rate = rate.value;
         utterance.pitch = pitch.value;
+        utterance.volume = volume.value;
         speechSynthesis.speak(utterance);
     });
 
     rate.addEventListener('input', () => rateValue.textContent = text.value);
     pitch.addEventListener('input', () => pitchValue.textContent = pitch.value);
+    volume.addEventListener('input', () => volumeValue.textContent = volume.value);
 
     window.onload = populateVoices;
   </script>
